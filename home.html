@@ -3,40 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Fórum Estudantil</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Home</title>
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="logo">Fórum Estudantil</div>
-        <div class="user-info">
-            <img src="profile.jpg" alt="Foto de Perfil" class="profile-photo">
-            <a href="user_page.html">Minha Página</a>
-            <button onclick="openSettings()">Configurações</button>
-            <button class="theme-toggle" onclick="toggleTheme()">Alternar Tema</button>
+    <div class="main_container">
+
+        <nav class="navbar">
+            <<div class="user-info">
+                <img src="profile.jpg" alt="Foto de Perfil" class="profile-photo">
+                <a href="user_page.html">Minha Página</a>
+                <button class="config-button" onclick="openSettings()">
+                    <i class="fas fa-cog"></i> <!-- Ícone -->
+                </button>
+            </div>
+        </nav>    
+
+        <div class="post-container">
+            <h2>Gerar Postagem</h2>
+            <form id="postForm">
+                <textarea id="postText" placeholder="Escreva um comentário..." required></textarea>
+                <input type="file" id="postImage" accept="image/*">
+                <button type="submit">Publicar</button>
+            </form>
         </div>
-    </nav>    
-    <div class="post-container">
-        <h2>Gerar Postagem</h2>
-        <form id="postForm">
-            <textarea id="postText" placeholder="Escreva um comentário..." required></textarea>
-            <input type="file" id="postImage" accept="image/*">
-            <button type="submit">Publicar</button>
-        </form>
-    </div>
-    <div class="posts">
-        <h2>Posts Recentes</h2>
-        <div class="post">
-            <img src="sample.jpg" alt="Imagem do Post">
-            <p>Comentário do post</p>
-            <button onclick="likePost()">Curtir</button>
-            <button onclick="repost()">Repostar</button>
-            <div class="comments">
-                <p><strong>Usuário1:</strong> Comentário 1</p>
-                <p><strong>Usuário2:</strong> Comentário 2</p>
+        
+        <div class="posts">
+            <h2>Posts Recentes</h2>
+            <div id="post1" class="post">
+                <img src="sample.jpg" alt="Imagem do Post">
+                <p>Comentário do post</p>
+                <button onclick="likePost()">Curtir</button>
+                <button onclick="repost()">Repostar</button>
+                <button onclick="editPost('post1')">Editar</button>
+                <button onclick="deletePost('post1')">Deletar</button>
+                <div class="comments">
+                    <p><strong>Usuário1:</strong> Comentário 1</p>
+                    <p><strong>Usuário2:</strong> Comentário 2</p>
+                </div>
             </div>
         </div>
+       
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Editar Postagem</h2>
+                <textarea id="editTextarea"></textarea>
+                <button id="saveEdit">Salvar</button>
+            </div>
+        </div>
+
     </div>
-    <script src="script.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
