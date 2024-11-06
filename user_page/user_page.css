@@ -1,0 +1,147 @@
+/* Reset geral para o body */
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center; /* Centraliza o conteúdo principal horizontalmente */
+  background-color: #f9f9f9;
+  color: #333;
+  overflow-x: hidden; /* Remove o scroll horizontal */
+}
+
+/* Navbar fixa */
+.navbar {
+  width: 250px;
+  height: 100vh;
+  background-color: #333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Container principal da página */
+.user-page-container {
+  margin-left: 270px; /* Espaço para a navbar */
+  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px; /* Limita a largura máxima */
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilo para a seção de informações do perfil */
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px; /* Afasta a foto da navbar */
+}
+
+#username {
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  background: none;
+  color: #333;
+  width: 100%;
+  max-width: 200px;
+  padding: 5px;
+  outline: none;
+  text-align: left;
+}
+
+#username[placeholder] {
+  color: #888;
+}
+
+.profile-info button {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-info button:hover {
+  background-color: #004080;
+}
+
+/* Estilo para os posts */
+.user-posts {
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 30px;
+}
+
+.user-posts h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.posts .post {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.posts .post p {
+  font-size: 16px;
+  color: #333;
+}
+
+.posts .post button {
+  background-color: #ffa500;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 14px;
+  width: 100px; /* Largura fixa para os botões */
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.posts .post button:hover {
+  background-color: #cc8400;
+}
+
+/* Alinhamento dos botões */
+.post-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Permite que os botões se ajustem em telas menores */
+  justify-content: center; /* Alinha os botões à esquerda */
+}
