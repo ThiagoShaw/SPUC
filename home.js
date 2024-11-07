@@ -222,8 +222,56 @@ function editPost(postId) {
     }
 }
 
+// TDD para BDD 8 - Inserir pfp
+
+// Teste inicial que deve falhar (sem pfp inserida)
+
+function testeInserirFotoPerfilTDD() {
+    const pfpPhotoInput = document.createElement('input');
+    pfpPhotoInput.type = 'file';
+    pfpPhotoInput.accept = 'image/*';
+
+    pfpPhotoInput.addEventListener('change', (event) => {
+        const profilePhoto = document.querySelector('.profile-photo');
+        const file = event.target.files[0];
+        if (file) {
+            profilePhoto.src = URL.createObjectURL(file);
+            console.log("Teste passou: a foto de perfil foi atualizada");
+        } else {
+            console.error("Falha: nenhuma foto de perfi selecionada")
+        }
+    });
+
+    const dummyFile = null;
+    const dataTransfer = new DataTransfer();
+    if (dummyFile) {
+        dataTransfer.items.add(dummyFile);
+        pfpPhotoInput.files = dataTransfer.files;
+        pfpPhotoInput.dispatchEvent(new Event('change'));
+
+    } else {
+        console.error("Falha: arquivo de teste não encontrado");
+    }
+
+}
+
+function inserirPfp() {
+    const pfpPhotoInput = document.querySelector('input[type="file"');
+    pfpPhotoInput.addEventListener('change', (event) => {
+        const profilePhoto = document.querySelector('.profile-photo');
+        const file = event.target.file[0];
+        if (file) {
+            profilePhoto.src = URL.createObjectURL(file);
+        }
+    });
+}
+
+//chamada do TDD paa teste de inserir pfp
+testeInserirFotoPerfilTDD();
+inserirPfp(); 
+
 function acionarImagensPost() {
-    const postImagens = document.querySelectorAll('postImage');
+    const postImageInput = document.getElementById('postImage');
     postImageInput.addEventListener('change', (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -235,12 +283,18 @@ function acionarImagensPost() {
     });
 }
 
-testeExcluirImagemPostTDD();
-testeExcluirImagemPostTDD();
+//
+testeAcionarImagemPostTDD();
+acionarImagemPost();
 
+
+
+// TDD para BDD 10 - deletar imagem do post
+
+// Primeiro teste que não funciona (a imagem não será deletada)
 
 function testeExcluirImagemPostTDD() {
-    const postImagenInput = document.getElementById('postImage');
+    const postImageInput = document.getElementById('postImage');
     const removeImageButton = document.createElement('button');
     removeImageButton.textContent = 'Remover Imagem';
     postImageInput.insertAdjacentElement('afterend', removeImageButton);
@@ -255,6 +309,7 @@ function testeExcluirImagemPostTDD() {
         }
     });
 
+    //Teste do clique para falhar
     removeImageButton.click();
 }
 
@@ -268,6 +323,9 @@ function exclurImagemPost() {
         postImageInput.value = '';
     });
 }
+testeExcluirImagemPostTDD();
+exclurImagemPost();
+
 
 testeAcionarImagemPostTDD();
 acionarImagemPost();
