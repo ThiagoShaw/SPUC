@@ -44,8 +44,8 @@
     <h2>Posts Recentes</h2>
     <div id="post1" class="post">
         <img src="sample.jpg" alt="Imagem do Post" />
-        <p>Comentário do post</p>
-        <button onclick="likePost('post1')" id="likeButton">Curtir</button>
+        <p><script>document.getElementById('postText').textContent = textContent</script></p>
+        <button onclick="likePost('post1')" id="likeButton">Curtir</button> <span id="likeCount"></span>
         <button onclick="repost('post1')" id="repostButton">Repostar</button>
         <button onclick="editPost('post1')">Editar</button>
         <button onclick="deletePost('post1')">Deletar</button>

@@ -32,6 +32,7 @@ window.onload = function testeGerarPost() {
 }  
 */
 
+
 document.getElementById('postForm')?.addEventListener('submit', function(event) {
     event.preventDefault();
     const postText = document.getElementById('postText').value;
@@ -44,28 +45,43 @@ document.getElementById('postForm')?.addEventListener('submit', function(event) 
 
     const newPost = document.createElement('div');
     newPost.classList.add('post');
-    newPost.id = `post${Date.now()}`; // Gera um ID único para o novo post
+    const postId = `post${Date.now()}`; // Gera um ID único para o novo post
+    newPost.id = postId;
 
-    // Adiciona conteúdo ao novo post
     newPost.innerHTML = `
         ${postImage ? `<img src="${URL.createObjectURL(postImage)}" alt="Imagem do Post">` : ''}
         <p>${postText}</p>
-        <button onclick="likePost()">Curtir</button>
-        <button onclick="repost()">Repostar</button>
-        <button onclick="editPost('${newPost.id}')">Editar</button>
-        <button onclick="deletePost('${newPost.id}')">Deletar</button>
         <div class="comments">
             <p><strong>Usuário:</strong> Comentário inicial</p>
         </div>
     `;
 
-    // Adiciona o novo post à lista de posts
-    document.querySelector('.posts').appendChild(newPost);
+    const likeButton = document.createElement('button');
+    likeButton.innerText = 'Curtir';
+    likeButton.addEventListener('click', () => likePost(postId));
 
-    // Limpa o formulário após a publicação
+    const repostButton = document.createElement('button');
+    repostButton.innerText = 'Repostar';
+    repostButton.addEventListener('click', () => repost(postId));
+
+    const editButton = document.createElement('button');
+    editButton.innerText = 'Editar';
+    editButton.addEventListener('click', () => editPost(postId));
+
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Deletar';
+    deleteButton.addEventListener('click', () => deletePost(postId));
+
+    newPost.appendChild(likeButton);
+    newPost.appendChild(repostButton);
+    newPost.appendChild(editButton);
+    newPost.appendChild(deleteButton);
+
+    document.querySelector('.posts').appendChild(newPost);
     document.getElementById('postForm').reset();
     alert('Postagem publicada com sucesso!');
 });
+
 
 /*
 // Teste do BDD 5 - Curtir Post
@@ -93,18 +109,25 @@ window.onload = function testeCurtirPost(){
 }
 */
 
+let likeCount = 0;
+
 function likePost(postId) {
     const post = document.getElementById(postId);
-    const likeButton = post.querySelector('#likeButton');
+    const likeButton = post.querySelector('button');
     
-    if (!likeButton) return;
-
     if (likeButton.innerText === "Curtir") {
         likeButton.innerText = "Descurtir";
+        likeButton.style.color = "red";
+        likeCount++;
     } else {
         likeButton.innerText = "Curtir";
+        likeButton.style.color = "white";
+        likeCount--;
     }
+
+    document.getElementById('likeCount').textContent = likeCount;
 }
+
 
 /*
 // Teste do BDD 6 - Excluir Curtida
