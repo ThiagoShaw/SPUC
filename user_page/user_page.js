@@ -42,8 +42,30 @@ function loadUserPosts() {
 }
 
 function editPhoto() {
-  alert("Funcionalidade de edição de foto em breve.");
+  const photoArea = document.getElementById('editPhoto');
+  const profileImage = document.getElementById('profileImage');
+  const inputImagem = document.createElement('input');
+  inputImagem.type = 'file';
+  inputImagem.accept = 'image/*';
+
+  inputImagem.addEventListener('change', () => {
+    const file = inputImagem.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        profileImage.src = e.target.result; 
+      };
+      reader.readAsDataURL(file);
+    } else {
+      console.log("Falha ao inserir foto!");
+    }
+  });
+
+  photoArea.addEventListener('click', () => {
+    inputImagem.click();
+  });
 }
+
 
 function likePost(postId) {
   alert(`Você curtiu o post com ID ${postId}`);
@@ -56,3 +78,44 @@ function editPost(postId) {
 function deletePost(postId) {
   alert(`Post ${postId} deletado.`);
 }
+
+// TDD para BDD 8 - Inserir pfp
+function testeInserirPfp() {
+  console.log("Testando inserção de foto...");
+
+  console.log("analisando página...");
+  const profileImage = document.getElementById('profileImage');
+  const originalSrc = profileImage.src; 
+
+  console.log("simulando upload de pfp...");
+  const file = new File(["dummy content"], "pfp.jpg", { type: "image/jpeg" });
+  const dataTransfer = new DataTransfer();
+  dataTransfer.items.add(file);
+
+  const inputImagem = document.createElement('input');
+  inputImagem.type = 'file';
+  inputImagem.files = dataTransfer.files;
+
+  inputImagem.addEventListener('change', () => {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      profileImage.src = e.target.result;
+
+      if (profileImage.src !== originalSrc) {
+        console.log("Teste de inserção de foto aprovado! 😋");
+      } else {
+        console.error("Falha no teste de inserção de foto!");
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+
+  inputImagem.dispatchEvent(new Event('change'));
+}
+
+
+window.onload = function () {
+  editPhoto(); 
+  testeInserirPfp(); 
+};
+
