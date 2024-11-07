@@ -1,3 +1,71 @@
+/*
+// Teste do BDD 1 - Cadastro de usuário
+
+window.onload = function testeCadastro() {
+  console.log("testando cadastro...");
+
+  console.log("lendo IDs...");
+  const emailInput = document.getElementById('email');
+  const senhaInput = document.getElementById('password');
+  const form = document.getElementById('signupForm');
+
+  console.log("testando valores nos campos...");
+  emailInput.value = 'email.teste@pucpr.edu.br';
+  senhaInput.value = 'senha123456';
+
+  form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (emailInput.value && senhaInput.value) {
+          console.log("usuário cadastrado com sucesso! 🤗");
+      } else {
+          console.error("falha no teste");
+          alert("falha no teste");
+      }
+  });
+
+  document.getElementById('signupButton').click();
+};
+*/
+
+// Teste do BDD 2 - Login de usuário
+
+window.onload = function testeLogin() {
+  console.log("iniciando teste de login...");
+
+  const numberInput = document.getElementById('studentNumber');
+  const senhaInput = document.getElementById('password');
+  const form = document.getElementById('loginForm');
+  const loginButton = document.getElementById('loginButton');
+
+  if (!numberInput || !senhaInput || !form || !loginButton) {
+      console.error("erro: Um ou mais elementos de login não foram encontrados.");
+      return;
+  }
+
+  console.log("lendo IDs dos campos de login...");
+  
+  console.log("definindo valores nos campos de email e senha...");
+  numberInput.value = 'email.teste@pucpr.edu.br';
+  senhaInput.value = 'senha123456';
+
+  form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      console.log("Verificando valores dos campos...");
+      
+      if (numberInput.value && senhaInput.value) {
+          console.log("usuário logado com sucesso! 😀");
+          alert("Login realizado! Teste passou!");
+      } else {
+          console.error("Falha no teste: Campos de login estão vazios.");
+          alert("Falha no teste");
+      }
+  });
+
+  console.log("simulando clique no botão de login...");
+  loginButton.click();
+}
+
 // Seleção de formulários
 const loginForm = document.getElementById("loginForm");
 const signupForm = document.getElementById("signupForm");

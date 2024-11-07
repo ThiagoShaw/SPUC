@@ -1,3 +1,37 @@
+/*
+// Teste do BDD 3 - Gerar Post
+
+window.onload = function testeGerarPost() {
+    console.log("testando gerar post...");
+
+    console.log("adquirindo IDs post...");
+    const postInput = document.getElementById('postText');
+    const postButton = document.getElementById('postButton');
+    const feed = document.getElementById('post1');
+
+    console.log("teste post post...");
+    postInput.value = "testando post";
+    
+    console.log("iniciando evento de teste de post efetivamente...");
+    postButton.addEventListener('click', () => {
+        if(postInput.value.trim()){
+            const newPost = document.createElement('div');
+            newPost.className = 'post';
+            newPost.innerHTML = postInput.value;
+
+            feed.appendChild(newPost);
+            postInput.value = "";
+            console.log("teste de geração de post aprovado!")
+        } else {
+            console.error("falha no teste");
+        }
+    }) 
+
+    postButton.click();
+
+}  
+*/
+
 document.getElementById('postForm')?.addEventListener('submit', function(event) {
     event.preventDefault();
     const postText = document.getElementById('postText').value;
@@ -33,12 +67,118 @@ document.getElementById('postForm')?.addEventListener('submit', function(event) 
     alert('Postagem publicada com sucesso!');
 });
 
-function likePost() {
-    alert('Você curtiu este post!');
+/*
+// Teste do BDD 5 - Curtir Post
+window.onload = function testeCurtirPost(){
+    console.log("testando curtida de post...");
+    
+    const like = document.getElementById('likeButton');
+    const post = document.querySelector('.post');
+
+    console.log("verificando se o botão 'Curtir' está visível...");
+    if (!like) {
+        console.error("Botão 'Curtir' não encontrado!");
+        return;
+    }
+
+    console.log("clicando no like...");
+    like.click();
+
+    console.log("verificando se a função 'likePost' foi chamada...");
+    if (like.innerText !== "Descurtir") {
+        console.error("falha no teste: o botão não mudou para 'Descurtir'");
+    } else {
+        console.log("teste passou: O botão foi alterado para 'Descurtir'");
+    }
+}
+*/
+
+function likePost(postId) {
+    const post = document.getElementById(postId);
+    const likeButton = post.querySelector('#likeButton');
+    
+    if (!likeButton) return;
+
+    if (likeButton.innerText === "Curtir") {
+        likeButton.innerText = "Descurtir";
+    } else {
+        likeButton.innerText = "Curtir";
+    }
 }
 
-function repost() {
-    alert('Postagem repostada com sucesso!');
+/*
+// Teste do BDD 6 - Excluir Curtida
+window.onload = function testeExcluirCurtida(){
+    console.log("testando exclusão de curtida...");
+
+    const like = document.getElementById('likeButton');
+    const post = document.querySelector('.post');
+
+    console.log("verificando se o botão de 'Descurtir' está visível");
+    if(!like){
+        console.error("botão de 'Descurtir' não encontrado!");
+        return;
+    }
+
+    console.log("clicando no deslike...");
+    if(like.innerText == 'Curtir'){
+        like.click();
+        if(like.innerText == "Descurtir"){
+            console.log("clicando novamente no deslike...");
+            like.click();
+            if(like.innerText == "Curtir"){
+                console.log("passou no teste: botão mudou para 'Curtir'");
+            } else {
+                console.error("falha no teste: botão não mudou para 'Curtir'");
+            }
+        }
+    }    
+}
+*/
+
+/*
+// Teste do BDD 4 - Realizar o Repost
+window.onload = function testeRepost() {
+    console.log("testando repost...");
+
+    const postOriginal = document.querySelector('.post');
+    const repostButton = document.getElementById('repostButton');
+    
+    if (!postOriginal || !repostButton) {
+        console.error("Post ou botão de repost não encontrados.");
+        return;
+    }
+
+    repostButton.addEventListener('click', () => {
+        repost(postOriginal.id); 
+    });
+
+    repostButton.click();
+}
+*/
+
+// Função de repost
+function repost(postId) {
+    const postOriginal = document.getElementById(postId);
+    
+    if (!postOriginal) {
+        console.error("Post original não encontrado.");
+        return;
+    }
+    
+    // Clonando o post original
+    const repost = postOriginal.cloneNode(true);
+    repost.classList.add('repost');  // Adiciona uma classe de repost para diferenciar
+
+    // Remove o botão de repost do post clonado
+    const repostButton = repost.querySelector('button[onclick="repost()"]');
+    if (repostButton) {
+        repostButton.remove();
+    }
+
+    // Adiciona o repost ao feed
+    document.querySelector('.posts').appendChild(repost);
+    console.log("Repost feito com sucesso!");
 }
 
 function editPhoto() {
