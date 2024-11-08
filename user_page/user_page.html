@@ -19,6 +19,7 @@
           src="../public/profile-pic.png"
           alt="Foto de Perfil"
           class="profile-photo"
+          id="profileImage"
         />
         <a href="../home_page/home.html">Voltar para Home</a>
         <button class="config-button" onclick="openSettings()">
@@ -34,6 +35,7 @@
           src="../public/profile-pic.png"
           alt="Foto de Perfil"
           class="profile-photo"
+          id="profileImage"
         />
         <input
           type="text"
@@ -41,7 +43,7 @@
           placeholder="Digite seu nome"
           onblur="saveUsername()"
         />
-        <button onclick="editPhoto()">Editar Foto</button>
+        <button onclick="editPhoto()" id="editPhoto">Editar Foto</button>
       </div>
 
       <div class="user-posts">

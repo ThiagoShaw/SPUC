@@ -29,7 +29,7 @@ window.onload = function testeCadastro() {
 */
 
 // Teste do BDD 2 - Login de usuário
-
+/*
 window.onload = function testeLogin() {
   console.log("iniciando teste de login...");
 
@@ -65,6 +65,7 @@ window.onload = function testeLogin() {
   console.log("simulando clique no botão de login...");
   loginButton.click();
 }
+  */
 
 // Seleção de formulários
 const loginForm = document.getElementById("loginForm");

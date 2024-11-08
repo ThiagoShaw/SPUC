@@ -1,10 +1,15 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
   background-color: #f9f9f9;
   color: #333;
-  display: flex;
-  justify-content: center; /* Centraliza o conteúdo principal horizontalmente */
+}
+
+.main_container {
+  display: inline;
+  padding: 50px 300px 50px;
+  justify-content: center;
 }
 
 /* Navbar colapsável fixa à esquerda */
@@ -56,17 +61,25 @@ body {
 }
 
 .profile-photo {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 10px;
+  margin-right: 15px; /* Afasta a foto da navbar */
 }
 
 .user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 20px;
+}
+
+.user-info .profile-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
 .user-info a {
@@ -80,7 +93,7 @@ body {
   width: 88%;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s;
 }
 
 .user-info button {
@@ -90,66 +103,50 @@ body {
   background-color: #555;
   color: white;
   border: none;
-  padding: 10px 10px;
+  padding: 10px 10px 10px;
   margin-top: 10px;
   border-radius: 15px;
   cursor: pointer;
   width: 25px;
   height: 25px;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  transition: background-color 0.3s;
   font-size: 17px;
+}
+
+.user-info button i {
+  pointer-events: none;
 }
 
 .user-info button:hover,
 .user-info a:hover {
   background-color: #777;
-  color: #fff;
-  transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Área principal de conteúdo centralizada */
-.main_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 50px;
-  max-width: 800px;
-  width: 100%;
-  margin-left: 80px; /* Ajuste para dar espaço para a navbar colapsada */
-}
-
-/* Estilo para os contêineres de postagens */
+/* Área principal de conteúdo */
 .post-container,
 .posts {
-  width: 100%;
-  max-width: 700px;
+  margin-left: 270px; /* Espaço para a navbar */
+  padding: 20px;
   background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
   margin-top: 30px;
-  box-sizing: border-box;
 }
 
-/* Ajuste do cabeçalho */
 .post-container h2,
 .posts h2 {
   color: #333;
-  margin-bottom: 20px;
-  text-align: center;
 }
 
-/* Estilo para o textarea */
 textarea {
   width: 100%;
   height: 100px;
-  padding: 10px; /* Espaçamento interno */
+  padding: 10px 0px 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
-  box-sizing: border-box; /* Inclui padding na largura total */
 }
 
 input[type="file"] {
@@ -164,16 +161,12 @@ button[type="submit"] {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  width: 100%; /* Centraliza o botão */
-  max-width: 150px; /* Limita a largura */
-  margin: 0 auto; /* Centraliza horizontalmente */
 }
 
 button[type="submit"]:hover {
   background-color: #004080;
 }
 
-/* Estilo para os posts */
 .posts .post {
   margin-top: 20px;
   padding: 15px;
@@ -216,7 +209,7 @@ button[type="submit"]:hover {
 }
 
 .modal {
-  display: none;
+  display: none; /* Escondido por padrão */
   position: fixed;
   z-index: 1;
   left: 0;
