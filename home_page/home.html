@@ -13,19 +13,22 @@
 
   <body>
     <div class="main_container">
-      <nav class="navbar">
-        <div class="user-info">
-          <img
-            src="../public/profile-pic.png"
-            alt="Foto de Perfil"
-            class="profile-photo"
-          />
-          <a href="../user_page/user_page.html">Minha Página</a>
-          <button class="config-button" onclick="openSettings()">
-            <i class="fas fa-cog"></i>
-          </button>
+      <div class="navbar" id="navbar">
+        <button class="toggle-button" onclick="toggleNavbar()">SPUC</button>
+        <div class="navbar-content" id="navbarContent">
+          <div class="user-info">
+            <img
+              src="../public/profile-pic.png"
+              alt="Foto de Perfil"
+              class="profile-photo"
+            />
+            <a href="../user_page/user_page.html">Minha Página</a>
+            <button class="config-button" onclick="openSettings()">
+              <i class="fas fa-cog"></i>
+            </button>
+          </div>
         </div>
-      </nav>
+      </div>
 
       <div class="post-container">
         <h2>Gerar Postagem</h2>
@@ -41,21 +44,20 @@
       </div>
 
       <div class="posts">
-    <h2>Posts Recentes</h2>
-    <div id="post1" class="post">
-        <img src="sample.jpg" alt="Imagem do Post" />
-        <p>Comentário do post</p>
-        <button onclick="likePost('post1')" id="likeButton">Curtir</button>
-        <button onclick="repost('post1')" id="repostButton">Repostar</button>
-        <button onclick="editPost('post1')">Editar</button>
-        <button onclick="deletePost('post1')">Deletar</button>
-        <div class="comments">
+        <h2>Posts Recentes</h2>
+        <div id="post1" class="post">
+          <img src="sample.jpg" alt="Imagem do Post" />
+          <p>Comentário do post</p>
+          <button onclick="likePost('post1')" id="likeButton">Curtir</button>
+          <button onclick="repost('post1')" id="repostButton">Repostar</button>
+          <button onclick="editPost('post1')">Editar</button>
+          <button onclick="deletePost('post1')">Deletar</button>
+          <div class="comments">
             <p><strong>Usuário1:</strong> radical</p>
             <p><strong>Usuário2:</strong> maneiro</p>
+          </div>
         </div>
-    </div>
-</div>
-
+      </div>
 
       <div id="editModal" class="modal">
         <div class="modal-content">

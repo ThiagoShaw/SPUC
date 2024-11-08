@@ -32,23 +32,36 @@ window.onload = function testeGerarPost() {
 }  
 */
 
-document.getElementById('postForm')?.addEventListener('submit', function(event) {
-    event.preventDefault();
-    const postText = document.getElementById('postText').value;
-    const postImage = document.getElementById('postImage').files[0];
+function toggleNavbar() {
+  const navbar = document.getElementById("navbar");
+  navbar.classList.toggle("expanded"); // Alterna a classe "expanded" na navbar
+}
 
-    if (postText.trim() === '') {
-        alert('Por favor, escreva um comentário.');
-        return;
+document
+  .getElementById("postForm")
+  ?.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const postText = document.getElementById("postText").value;
+    const postImage = document.getElementById("postImage").files[0];
+
+    if (postText.trim() === "") {
+      alert("Por favor, escreva um comentário.");
+      return;
     }
 
-    const newPost = document.createElement('div');
-    newPost.classList.add('post');
+    const newPost = document.createElement("div");
+    newPost.classList.add("post");
     newPost.id = `post${Date.now()}`; // Gera um ID único para o novo post
 
     // Adiciona conteúdo ao novo post
     newPost.innerHTML = `
-        ${postImage ? `<img src="${URL.createObjectURL(postImage)}" alt="Imagem do Post">` : ''}
+        ${
+          postImage
+            ? `<img src="${URL.createObjectURL(
+                postImage
+              )}" alt="Imagem do Post">`
+            : ""
+        }
         <p>${postText}</p>
         <button onclick="likePost()">Curtir</button>
         <button onclick="repost()">Repostar</button>
@@ -60,12 +73,12 @@ document.getElementById('postForm')?.addEventListener('submit', function(event) 
     `;
 
     // Adiciona o novo post à lista de posts
-    document.querySelector('.posts').appendChild(newPost);
+    document.querySelector(".posts").appendChild(newPost);
 
     // Limpa o formulário após a publicação
-    document.getElementById('postForm').reset();
-    alert('Postagem publicada com sucesso!');
-});
+    document.getElementById("postForm").reset();
+    alert("Postagem publicada com sucesso!");
+  });
 
 /*
 // Teste do BDD 5 - Curtir Post
@@ -94,16 +107,16 @@ window.onload = function testeCurtirPost(){
 */
 
 function likePost(postId) {
-    const post = document.getElementById(postId);
-    const likeButton = post.querySelector('#likeButton');
-    
-    if (!likeButton) return;
+  const post = document.getElementById(postId);
+  const likeButton = post.querySelector("#likeButton");
 
-    if (likeButton.innerText === "Curtir") {
-        likeButton.innerText = "Descurtir";
-    } else {
-        likeButton.innerText = "Curtir";
-    }
+  if (!likeButton) return;
+
+  if (likeButton.innerText === "Curtir") {
+    likeButton.innerText = "Descurtir";
+  } else {
+    likeButton.innerText = "Curtir";
+  }
 }
 
 /*
@@ -159,70 +172,70 @@ window.onload = function testeRepost() {
 
 // Função de repost
 function repost(postId) {
-    const postOriginal = document.getElementById(postId);
-    
-    if (!postOriginal) {
-        console.error("Post original não encontrado.");
-        return;
-    }
-    
-    // Clonando o post original
-    const repost = postOriginal.cloneNode(true);
-    repost.classList.add('repost');  // Adiciona uma classe de repost para diferenciar
+  const postOriginal = document.getElementById(postId);
 
-    // Remove o botão de repost do post clonado
-    const repostButton = repost.querySelector('button[onclick="repost()"]');
-    if (repostButton) {
-        repostButton.remove();
-    }
+  if (!postOriginal) {
+    console.error("Post original não encontrado.");
+    return;
+  }
 
-    // Adiciona o repost ao feed
-    document.querySelector('.posts').appendChild(repost);
-    console.log("Repost feito com sucesso!");
+  // Clonando o post original
+  const repost = postOriginal.cloneNode(true);
+  repost.classList.add("repost"); // Adiciona uma classe de repost para diferenciar
+
+  // Remove o botão de repost do post clonado
+  const repostButton = repost.querySelector('button[onclick="repost()"]');
+  if (repostButton) {
+    repostButton.remove();
+  }
+
+  // Adiciona o repost ao feed
+  document.querySelector(".posts").appendChild(repost);
+  console.log("Repost feito com sucesso!");
 }
 
 function editPhoto() {
-    alert('Funcionalidade de editar foto em desenvolvimento.');
+  alert("Funcionalidade de editar foto em desenvolvimento.");
 }
 
 function openSettings() {
-    alert('Abrindo configurações...');
+  alert("Abrindo configurações...");
 }
 
 // Função para deletar um post
 function deletePost(postId) {
-    const postElement = document.getElementById(postId);
-    if (postElement) {
-        postElement.remove();
-        alert('Postagem deletada com sucesso!');
-    } else {
-        alert('Erro: Postagem não encontrada.');
-    }
+  const postElement = document.getElementById(postId);
+  if (postElement) {
+    postElement.remove();
+    alert("Postagem deletada com sucesso!");
+  } else {
+    alert("Erro: Postagem não encontrada.");
+  }
 }
 
 // Função para abrir o modal de edição
 function editPost(postId) {
-    const postElement = document.getElementById(postId);
-    if (postElement) {
-        const modal = document.getElementById('editModal');
-        const editTextarea = document.getElementById('editTextarea');
-        
-        // Popula o textarea com o conteúdo atual do post
-        editTextarea.value = postElement.querySelector('p').textContent;
-        modal.style.display = 'block';
+  const postElement = document.getElementById(postId);
+  if (postElement) {
+    const modal = document.getElementById("editModal");
+    const editTextarea = document.getElementById("editTextarea");
 
-        // Adiciona evento ao botão de salvar com escopo correto
-        document.getElementById('saveEdit').onclick = function() {
-            postElement.querySelector('p').textContent = editTextarea.value;
-            modal.style.display = 'none';
-            alert('Postagem editada com sucesso!');
-        };
-    } else {
-        alert('Erro: Postagem não encontrada.');
-    }
+    // Popula o textarea com o conteúdo atual do post
+    editTextarea.value = postElement.querySelector("p").textContent;
+    modal.style.display = "block";
+
+    // Adiciona evento ao botão de salvar com escopo correto
+    document.getElementById("saveEdit").onclick = function () {
+      postElement.querySelector("p").textContent = editTextarea.value;
+      modal.style.display = "none";
+      alert("Postagem editada com sucesso!");
+    };
+  } else {
+    alert("Erro: Postagem não encontrada.");
+  }
 }
 
 // Função para fechar o modal
 function closeModal() {
-    document.getElementById('editModal').style.display = 'none';
+  document.getElementById("editModal").style.display = "none";
 }
