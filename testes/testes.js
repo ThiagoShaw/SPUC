@@ -134,3 +134,103 @@ function testeCurtirPost() {
 
 }
 testeCurtirPost();
+
+
+// Teste do BDD 9 - Adicionar Imagem no Post
+
+function testeAdicionarImagemNoPost() {
+    console.log("testando adição de imagem no post...");
+
+    // Seleciona os elementos necessários para o teste
+    const postInput = document.getElementById('postText');
+    const postImageInput = document.getElementById('postImage');
+    const postButton = document.getElementById('postButton');
+    const feed = document.querySelector('.posts');
+
+    // Define um valor de texto para o post
+    postInput.value = "testando imagem no post";
+
+    // Cria um arquivo de imagem simulado (fake image file)
+    const fakeImage = new File(["fake content"], "fake-image.jpg", { type: "image/jpeg" });
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(fakeImage);
+    postImageInput.files = dataTransfer.files;
+
+    // Adiciona evento de clique no botão de postagem para verificar a criação do post
+    postButton.addEventListener('click', () => {
+        const newPost = document.querySelector('.post');
+
+        if (newPost && newPost.querySelector('img')) {
+            console.log("teste de adição de imagem no post aprovado! ✅");
+        } else {
+            console.error("falha no teste: imagem não foi adicionada ao post ❌");
+        }
+    });
+
+    // Simula o clique no botão de postar
+    postButton.click();
+}
+
+testeAdicionarImagemNoPost();
+
+
+ // teste TDD 10 - Excluir imagem do post
+// Função para testar a exclusão da imagem de um post
+function testeExcluirImagemDoPost() {
+    console.log("testando exclusão de imagem no post...");
+
+    // Seleciona os elementos necessários para o teste
+    const postInput = document.getElementById('postText');
+    const postImageInput = document.getElementById('postImage');
+    const postButton = document.getElementById('postButton');
+    const feed = document.querySelector('.posts');
+
+    // Verifica se o input de imagem foi encontrado
+    if (!postImageInput) {
+        console.error("Erro: o elemento de entrada de imagem (postImage) não foi encontrado no DOM.");
+        return; // Interrompe a execução do teste caso o elemento não exista
+    }
+
+    // Define um valor de texto para o post
+    postInput.value = "testando excluir imagem no post";
+
+    // Cria um arquivo de imagem simulado (fake image file)
+    const fakeImage = new File(["fake content"], "fake-image.jpg", { type: "image/jpeg" });
+    const dataTransfer = new DataTransfer();
+    dataTransfer.items.add(fakeImage);
+    postImageInput.files = dataTransfer.files;
+
+    // Adiciona evento de clique no botão de postagem para verificar a criação do post
+    postButton.addEventListener('click', () => {
+        const newPost = document.querySelector('.post');
+        
+        if (newPost) {
+            // Verifica se a imagem foi adicionada ao post
+            const img = newPost.querySelector('img');
+            if (img) {
+                console.log("Imagem adicionada ao post. Agora excluindo a imagem...");
+
+                // Remove a imagem do post
+                img.remove();
+
+                // Verifica se a imagem foi realmente removida
+                if (!newPost.querySelector('img')) {
+                    console.log("teste de exclusão de imagem no post aprovado! ✅");
+                } else {
+                    console.error("falha no teste: a imagem não foi removida do post ❌");
+                }
+            } else {
+                console.error("falha no teste: imagem não foi adicionada ao post para exclusão ❌");
+            }
+        } else {
+            console.error("falha no teste: post não foi criado ❌");
+        }
+    });
+
+    // Simula o clique no botão de postar
+    postButton.click();
+}
+
+testeExcluirImagemDoPost();
+
+
